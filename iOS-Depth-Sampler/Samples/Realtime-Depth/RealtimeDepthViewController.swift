@@ -26,6 +26,8 @@ class RealtimeDepthViewController: UIViewController {
     private var currentDrawableSize: CGSize!
 
     private var videoImage: CIImage?
+
+    private var capture: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,15 @@ class RealtimeDepthViewController: UIViewController {
             
             self.videoImage = CIImage(cvPixelBuffer: videoPixelBuffer)
 
+            let capture = self.capture
+            self.capture = false
+            if let videoImage = self.videoImage, capture {
+                let context = CIContext() // Prepare for create CGImage
+                let cgimg = context.createCGImage(videoImage, from: videoImage.extent)
+                let output = UIImage(cgImage: cgimg!)
+                UIImageWriteToSavedPhotosAlbum(output, self, #selector(self.image(_:didFinishSavingVideoWithError:contextInfo:)), nil)
+            }
+
             var useDisparity: Bool = false
             var applyHistoEq: Bool = false
             DispatchQueue.main.sync(execute: {
@@ -58,6 +69,13 @@ class RealtimeDepthViewController: UIViewController {
                 
                 guard let ciImage = depthData.depthDataMap.transformedImage(targetSize: self.currentDrawableSize, rotationAngle: 0) else { return }
                 self.depthImage = applyHistoEq ? ciImage.applyingFilter("YUCIHistogramEqualization") : ciImage
+
+                if let depthImage = self.depthImage, capture {
+                    let context = CIContext() // Prepare for create CGImage
+                    let cgimg = context.createCGImage(depthImage, from: depthImage.extent)
+                    let output = UIImage(cgImage: cgimg!)
+                    UIImageWriteToSavedPhotosAlbum(output, self, #selector(self.image(_:didFinishSavingDepthWithError:contextInfo:)), nil)
+                }
             }
         }
         videoCapture.setDepthFilterEnabled(filterSwitch.isOn)
@@ -95,8 +113,22 @@ class RealtimeDepthViewController: UIViewController {
         videoCapture.changeCamera(with: currentCameraType)
     }
     
+    @IBAction func captureBtnTapped(_ sender: UIButton) {
+        capture = true
+    }
+
     @IBAction func filterSwitched(_ sender: UISwitch) {
         videoCapture.setDepthFilterEnabled(sender.isOn)
+    }
+
+    // MARK: - Completions
+
+    @objc func image(_ image: UIImage, didFinishSavingVideoWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+
+    }
+
+    @objc func image(_ image: UIImage, didFinishSavingDepthWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+
     }
 }
 

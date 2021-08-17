@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +21,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <mtkView contentMode="scaleAspectFill" colorPixelFormat="BGRA8Unorm" depthStencilPixelFormat="Invalid" translatesAutoresizingMaskIntoConstraints="NO" id="elr-Ki-23o">
-                                <rect key="frame" x="0.0" y="20" width="240" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="320"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="gj5-Py-8qV"/>
@@ -81,9 +79,9 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ady-5m-7I0">
-                                <rect key="frame" x="16" y="40" width="343" height="128"/>
+                                <rect key="frame" x="16" y="20" width="343" height="128"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-o1-mBo">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-o1-mBo">
                                         <rect key="frame" x="239" y="0.0" width="104" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="HrQ-sV-pct"/>
@@ -93,6 +91,16 @@
                                             <action selector="cameraSwitchBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WwN-k0-U5D"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT4-Hv-nPD">
+                                        <rect key="frame" x="239" y="40" width="104" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="PDY-DS-s63"/>
+                                        </constraints>
+                                        <state key="normal" title="Capture"/>
+                                        <connections>
+                                            <action selector="captureBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aRN-uo-3AN"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -100,9 +108,13 @@
                                     <constraint firstItem="x9q-o1-mBo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ady-5m-7I0" secondAttribute="leading" constant="20" symbolic="YES" id="6SF-98-91m"/>
                                     <constraint firstAttribute="trailing" secondItem="x9q-o1-mBo" secondAttribute="trailing" id="GrR-hk-N45"/>
                                     <constraint firstItem="x9q-o1-mBo" firstAttribute="top" secondItem="ady-5m-7I0" secondAttribute="top" id="LiR-dN-lCA"/>
+                                    <constraint firstItem="VT4-Hv-nPD" firstAttribute="width" secondItem="x9q-o1-mBo" secondAttribute="width" id="agw-G1-U90"/>
+                                    <constraint firstAttribute="trailing" secondItem="VT4-Hv-nPD" secondAttribute="trailing" id="oqs-fb-kXu"/>
+                                    <constraint firstItem="VT4-Hv-nPD" firstAttribute="top" secondItem="x9q-o1-mBo" secondAttribute="bottom" constant="8" symbolic="YES" id="xGk-Ay-qub"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="RBj-ea-WE3" secondAttribute="bottom" id="5Ud-e6-fNP"/>
@@ -118,7 +130,6 @@
                             <constraint firstAttribute="trailing" secondItem="RBj-ea-WE3" secondAttribute="trailing" id="vIT-z6-wPc"/>
                             <constraint firstItem="ady-5m-7I0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wHe-LR-wgS"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="disparitySwitch" destination="QGR-lY-3x7" id="Ni7-4b-0cE"/>
@@ -130,6 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="45.600000000000001" y="124.58770614692655"/>
         </scene>
     </scenes>
 </document>
